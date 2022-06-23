@@ -6,7 +6,7 @@ const SignP = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 81px);
 `;
 
 const SignUpDiv = styled.div`
@@ -93,6 +93,7 @@ const SignBtn = styled.button`
   width: 288px;
   height: 40px;
   border-radius: 10px;
+  font-size: 18px;
   background-color: #0080ff;
   color: white;
   cursor: pointer;

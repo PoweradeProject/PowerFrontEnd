@@ -71,7 +71,7 @@ const InputPw = styled.input`
 
 const LoginBtn = styled.button`
   width: 290px;
-  height: 40px;
+  height: 50px;
   border-radius: 8px;
   cursor: pointer;
   background-color: #0080ff;
@@ -89,7 +89,7 @@ const Login = () => {
   return (
     <LoginP>
       <LoginDiv>
-        <Title>Sign-In</Title>
+        <Title>로그인</Title>
         <InputIdBackGround>
           <InputId placeholder="USER NAME" />
         </InputIdBackGround>
