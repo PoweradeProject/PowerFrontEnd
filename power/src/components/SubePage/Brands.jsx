@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { BsHouseFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const BrandPage = styled.div`
   width: 100%;
@@ -8,7 +10,8 @@ const BrandPage = styled.div`
   background-color: black;
   border-bottom: 1px solid white;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const BrandHeader = styled.div`
@@ -17,7 +20,10 @@ const BrandHeader = styled.div`
   border: 1px solid white;
   display: flex;
   align-items: center;
+  margin-top: 20px;
 `;
+
+const BrandCal = styled.div``;
 
 const BrandTitle = styled.p`
   width: 250px;
@@ -26,12 +32,13 @@ const BrandTitle = styled.p`
   font-weight: 500;
   margin: 0;
   padding: 0;
-  margin-left: 100px;
+  margin-left: 120px;
 `;
 
 const BrandImgBackGround = styled.div`
   display: flex;
   justify-content: center;
+  margin-left: 80px;
   .Brand {
     width: 600px;
     height: 150px;
@@ -40,7 +47,75 @@ const BrandImgBackGround = styled.div`
 
 const BrandContents = styled.div`
   color: white;
-  font-size: 23px;
+  font-size: 20px;
+  margin-left: 125px;
+`;
+
+const BrandMiddleMain = styled.div`
+  width: 1300px;
+  border: 1px solid white;
+  display: flex;
+  margin-right: 1px;
+  .optionList {
+    width: 250px;
+    position: absolute;
+    background-color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear, visibility 1s linear;
+    list-style: none;
+  }
+`;
+
+const BrandHome = styled.div`
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid white;
+  transition: all 0.9s;
+  .house {
+    color: white;
+  }
+`;
+
+const Select = styled.div`
+  width: 250px;
+  height: 55px;
+  display: flex;
+  border-right: 1px solid white;
+  justify-content: center;
+  :hover .optionList {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+const Option = styled.div`
+  color: white;
+  font-size: 17px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+`;
+
+const OptionListItem = styled.li`
+  height: 55px;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  transition: all 0.8s;
+  cursor: pointer;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: black;
+  :hover {
+    color: white;
+    background-color: rgb(0, 1, 3, 5);
+  }
 `;
 
 const Brand = () => {
@@ -48,14 +123,42 @@ const Brand = () => {
     <>
       <BrandPage>
         <BrandHeader>
-          <BrandTitle>Brands</BrandTitle>
-          <BrandContents>
-            코카콜라에서 개발한 무탄산 스포츠 음료로 1988년에 출시되었다.
-          </BrandContents>
+          <BrandCal>
+            <BrandTitle>Brands</BrandTitle>
+            <BrandContents>
+              무탄산 스포츠 음료로 1988년에 출시되었다.
+            </BrandContents>
+          </BrandCal>
           <BrandImgBackGround>
-            <img src="./img/Brand.png" className="Brand" />
+            <img src="./img/Brand.png" className="Brand" alt="브랜드"/>
           </BrandImgBackGround>
         </BrandHeader>
+        <BrandMiddleMain>
+          <Link to="/">
+            <BrandHome>
+              <BsHouseFill className="house"/>
+            </BrandHome>
+          </Link>
+          <Select>
+            <Option className="option">
+              <span>BRANDS</span>
+            </Option>
+            <div class="optionList">
+              <Link to="/Brands">
+                <OptionListItem>BRANDS</OptionListItem>
+              </Link>
+              <Link to="/Product">
+                <OptionListItem>PRODUCT</OptionListItem>
+              </Link>
+              <Link to="/News">
+                <OptionListItem>NEWS</OptionListItem>
+              </Link>
+              <Link to="/Contact">
+                <OptionListItem>CONTACT</OptionListItem>
+              </Link>
+            </div>
+          </Select>
+        </BrandMiddleMain>
       </BrandPage>
     </>
   );

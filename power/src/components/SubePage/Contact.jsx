@@ -1,24 +1,148 @@
 import React from "react";
 import styled from "styled-components";
+import { BsHouseFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const ContactPage = styled.div`
   width: 100%;
   height: calc(100vh - 91px);
   position: relative;
   background-color: black;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
+const ContactHeader = styled.div`
+  width: 1300px;
+  height: 290px;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+const ContactCal = styled.div``;
+
 const ContactTitle = styled.p`
+  width: 250px;
   color: white;
-  font-size: 55px;
+  font-size: 80px;
   margin: 0;
   padding: 0;
+  margin-left: 120px;
+  font-weight: 500;
+`;
+
+const ContactContant = styled.p`
+  color: white;
+  font-size: 20px;
+  margin-left: 125px;
+`;
+
+const ContactMiddleMain = styled.div`
+  width: 1300px;
+  border: 1px solid white;
+  display: flex;
+  margin-right: 1px;
+  .optionList {
+    width: 250px;
+    position: absolute;
+    background-color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear, visibility 1s linear;
+    list-style: none;
+  }
+`;
+
+const ContactHome = styled.div`
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid white;
+  transition: all 0.9s;
+  .house {
+    color: white;
+  }
+`;
+
+const Select = styled.div`
+  width: 250px;
+  height: 55px;
+  display: flex;
+  border-right: 1px solid white;
+  justify-content: center;
+  :hover .optionList {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+const Option = styled.div`
+  color: white;
+  font-size: 17px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+`;
+
+const OptionListItem = styled.li`
+  height: 55px;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  transition: all 0.8s;
+  cursor: pointer;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: black;
+  :hover {
+    color: white;
+    background-color: rgb(0, 1, 3, 5);
+  }
 `;
 
 const Contact = () => {
   return (
     <ContactPage>
-      <ContactTitle>CONTACT</ContactTitle>
+      <ContactHeader>
+        <ContactCal>
+          <ContactTitle>Contact</ContactTitle>
+          <ContactContant>궁금한 점이 있으면 파워에이드에게 연락주세요.</ContactContant>
+        </ContactCal>
+      </ContactHeader>
+      <ContactMiddleMain>
+          <Link to="/">
+            <ContactHome>
+              <BsHouseFill className="house"/>
+            </ContactHome>
+          </Link>
+          <Select>
+            <Option className="option">
+              <span>CONTACT</span>
+            </Option>
+            <div class="optionList">
+              <Link to="/Contact">
+                <OptionListItem>CONTACT</OptionListItem>
+              </Link>
+              <Link to="/Brands">
+                <OptionListItem>BRANDS</OptionListItem>
+              </Link>
+              <Link to="/Product">
+                <OptionListItem>PRODUCT</OptionListItem>
+              </Link>
+              <Link to="/News">
+                <OptionListItem>NEWS</OptionListItem>
+              </Link>
+            </div>
+          </Select>
+        </ContactMiddleMain>
     </ContactPage>
   );
 };
