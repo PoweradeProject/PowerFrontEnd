@@ -5,7 +5,18 @@ import { Link } from "react-router-dom";
 
 const BrandPage = styled.div`
   width: 100%;
-  height: calc(100vh - 91px);
+  height: 100vh;
+  position: relative;
+  background-color: black;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ExplanationPage = styled.div`
+  width: 100%;
+  height: 100vh;
   position: relative;
   background-color: black;
   border-bottom: 1px solid white;
@@ -21,9 +32,25 @@ const BrandHeader = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-top: 120px;
 `;
 
-const BrandCal = styled.div``;
+const BrandCal = styled.div`
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
 
 const BrandTitle = styled.p`
   width: 250px;
@@ -43,12 +70,28 @@ const BrandImgBackGround = styled.div`
     width: 600px;
     height: 150px;
   }
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 `;
 
 const BrandContents = styled.div`
   color: white;
   font-size: 20px;
   margin-left: 125px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const BrandMiddleMain = styled.div`
@@ -118,25 +161,32 @@ const OptionListItem = styled.li`
   }
 `;
 
+const BrandItem = [
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+];
+
 const Brand = () => {
   return (
     <>
-      <BrandPage>
+      <ExplanationPage>
         <BrandHeader>
-          <BrandCal>
+          <BrandCal className="fadein">
             <BrandTitle>Brands</BrandTitle>
             <BrandContents>
               무탄산 스포츠 음료로 1988년에 출시되었다.
             </BrandContents>
           </BrandCal>
-          <BrandImgBackGround>
-            <img src="./img/Brand.png" className="Brand" alt="브랜드"/>
+          <BrandImgBackGround className="fadein">
+            <img src="./img/Brand.png" className="Brand" alt="브랜드" />
           </BrandImgBackGround>
         </BrandHeader>
         <BrandMiddleMain>
           <Link to="/">
             <BrandHome>
-              <BsHouseFill className="house"/>
+              <BsHouseFill className="house" />
             </BrandHome>
           </Link>
           <Select>
@@ -144,21 +194,18 @@ const Brand = () => {
               <span>BRANDS</span>
             </Option>
             <div class="optionList">
-              <Link to="/Brands">
-                <OptionListItem>BRANDS</OptionListItem>
-              </Link>
-              <Link to="/Product">
-                <OptionListItem>PRODUCT</OptionListItem>
-              </Link>
-              <Link to="/News">
-                <OptionListItem>NEWS</OptionListItem>
-              </Link>
-              <Link to="/Contact">
-                <OptionListItem>CONTACT</OptionListItem>
-              </Link>
+              {BrandItem.map((user) => (
+                <Link to={user.id}>
+                  <OptionListItem>
+                    {user.key}
+                  </OptionListItem>
+                </Link>
+              ))}
             </div>
           </Select>
         </BrandMiddleMain>
+      </ExplanationPage>
+      <BrandPage>
       </BrandPage>
     </>
   );

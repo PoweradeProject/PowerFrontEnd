@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const Head = styled.div`
   width: 100%;
   height: 90px;
+  position: fixed;
   display: flex;
+  z-index: 99;
   align-items: center;
   justify-content: space-around;
   background-color: #0a0f12;
@@ -13,17 +15,10 @@ const Head = styled.div`
     width: 180px;
     height: 45px;
   }
-  .brand,
-  .product,
-  .news,
-  .contact {
+  p {
     color: white;
     margin: 0;
     cursor: pointer;
-    font-weight: 500;
-    :hover {
-      color: #00BFFF
-    }
   }
 `;
 
@@ -40,8 +35,9 @@ const Headright = styled.div`
   width: 31%;
   display: flex;
   justify-content: space-around;
+  font-family: Light 300;
   .li:hover {
-    color: #2E9AFE;
+    color: #2e9afe;
   }
 `;
 
@@ -49,57 +45,55 @@ const LoginBtn = styled.div`
   width: 130px;
   display: flex;
   justify-content: space-around;
-  margin-right: 240px;
+  margin-right: 245px;
   .user,
   .login,
   .market {
     color: white;
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     cursor: pointer;
   }
 `;
 
 const SubeBox = styled.div`
-height: 85px;
-display: flex;
-justify-content: center;
-align-items: center;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
   :hover {
-    color: #2E9AFE;
-    border-bottom: 3px solid #2E9AFE
+    > p {
+      color: #2e9afe;
+    }
+    border-bottom: 3px solid #2e9afe;
+    box-sizing: border-box;
   }
 `;
+
+const subePage = [
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+];
 
 const Header = () => {
   return (
     <Head>
       <Headleft>
         <Link to="/">
-          <img src="./img/poweraderogo.png" className="logo" />
+          <img src="./img/poweraderogo.png" className="logo" alt="로고" />
         </Link>
       </Headleft>
       <Headright>
-        <Link to="/Brands">
-          <SubeBox>
-            <p className="brand">Brands</p>
-          </SubeBox>
-        </Link>
-        <Link to="/Product">
-          <SubeBox>
-            <p className="product">Product</p>
-          </SubeBox>
-        </Link>
-        <Link to="/News">
-          <SubeBox>
-            <p className="news">News</p>
-          </SubeBox>
-        </Link>
-        <Link to="/Contact">
-          <SubeBox>
-            <p className="contact">Contact</p>
-          </SubeBox>
-        </Link>
+        {subePage.map((user) => (
+          <Link to={user.id}>
+            <SubeBox>
+              <p className="brand">{user.key}</p>
+            </SubeBox>
+          </Link>
+        ))}
       </Headright>
       <LoginBtn>
         <Link to="/Login">

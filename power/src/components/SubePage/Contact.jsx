@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ContactPage = styled.div`
   width: 100%;
-  height: calc(100vh - 91px);
+  height: 100vh;
   position: relative;
   background-color: black;
   border-bottom: 1px solid white;
@@ -20,10 +20,25 @@ const ContactHeader = styled.div`
   border: 1px solid white;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
-const ContactCal = styled.div``;
+const ContactCal = styled.div`
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
 
 const ContactTitle = styled.p`
   width: 250px;
@@ -108,41 +123,43 @@ const OptionListItem = styled.li`
   }
 `;
 
+const ContactItem = [
+  { id: "/Contact", key: "CONTACT" },
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+];
+
 const Contact = () => {
   return (
     <ContactPage>
       <ContactHeader>
-        <ContactCal>
+        <ContactCal className="fadein">
           <ContactTitle>Contact</ContactTitle>
-          <ContactContant>궁금한 점이 있으면 파워에이드에게 연락주세요.</ContactContant>
+          <ContactContant>
+            궁금한 점이 있으면 파워에이드에게 연락주세요.
+          </ContactContant>
         </ContactCal>
       </ContactHeader>
       <ContactMiddleMain>
-          <Link to="/">
-            <ContactHome>
-              <BsHouseFill className="house"/>
-            </ContactHome>
-          </Link>
-          <Select>
-            <Option className="option">
-              <span>CONTACT</span>
-            </Option>
-            <div class="optionList">
-              <Link to="/Contact">
-                <OptionListItem>CONTACT</OptionListItem>
+        <Link to="/">
+          <ContactHome>
+            <BsHouseFill className="house" />
+          </ContactHome>
+        </Link>
+        <Select>
+          <Option className="option">
+            <span>CONTACT</span>
+          </Option>
+          <div class="optionList">
+            {ContactItem.map((user) => (
+              <Link to={user.id}>
+                <OptionListItem>{user.key}</OptionListItem>
               </Link>
-              <Link to="/Brands">
-                <OptionListItem>BRANDS</OptionListItem>
-              </Link>
-              <Link to="/Product">
-                <OptionListItem>PRODUCT</OptionListItem>
-              </Link>
-              <Link to="/News">
-                <OptionListItem>NEWS</OptionListItem>
-              </Link>
-            </div>
-          </Select>
-        </ContactMiddleMain>
+            ))}
+          </div>
+        </Select>
+      </ContactMiddleMain>
     </ContactPage>
   );
 };

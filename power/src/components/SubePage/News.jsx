@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const NewsPage = styled.div`
   width: 100%;
-  height: calc(100vh - 91px);
+  height: 100vh;
   position: relative;
   background-color: black;
   border-bottom: 1px solid white;
@@ -20,10 +20,49 @@ const NewsHeader = styled.div`
   border: 1px solid white;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
-const NewsCal = styled.div``;
+const NewsCal = styled.div`
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
+
+const NewsImgBackGround = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-left: 80px;
+  .News {
+    width: 800px;
+    height: 250px;
+  }
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
 
 const NewsTitle = styled.p`
   color: white;
@@ -31,7 +70,7 @@ const NewsTitle = styled.p`
   margin: 0;
   padding: 0;
   margin-left: 120px;
-  font-weight: 500; 
+  font-weight: 500;
 `;
 
 const NewsContant = styled.p`
@@ -107,19 +146,30 @@ const OptionListItem = styled.li`
   }
 `;
 
+const NewsItem = [
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+];
+
 const News = () => {
   return (
-    <NewsPage>
-      <NewsHeader>
-        <NewsCal>
-          <NewsTitle>News</NewsTitle>
-          <NewsContant>파워이에드에 새로운 소식을 전합니다.</NewsContant>
-        </NewsCal>
-      </NewsHeader>
-      <BrandMiddleMain>
+    <>
+      <NewsPage>
+        <NewsHeader>
+          <NewsCal className="fadein">
+            <NewsTitle>News</NewsTitle>
+            <NewsContant>파워이에드에 새로운 소식을 전합니다.</NewsContant>
+          </NewsCal>
+          <NewsImgBackGround className="fadein">
+            <img src="./img/" className="News" alt="뉴스" />
+          </NewsImgBackGround>
+        </NewsHeader>
+        <BrandMiddleMain>
           <Link to="/">
             <BrandHome>
-              <BsHouseFill className="house"/>
+              <BsHouseFill className="house" />
             </BrandHome>
           </Link>
           <Select>
@@ -127,22 +177,16 @@ const News = () => {
               <span>NEWS</span>
             </Option>
             <div class="optionList">
-              <Link to="/News">
-                <OptionListItem>NEWS</OptionListItem>
-              </Link>
-              <Link to="/Contact">
-                <OptionListItem>CONTACT</OptionListItem>
-              </Link>
-              <Link to="/Brands">
-                <OptionListItem>BRANDS</OptionListItem>
-              </Link>
-              <Link to="/Product">
-                <OptionListItem>PRODUCT</OptionListItem>
-              </Link>
+              {NewsItem.map((user) => (
+                <Link to={user.id}>
+                  <OptionListItem>{user.key}</OptionListItem>
+                </Link>
+              ))}
             </div>
           </Select>
         </BrandMiddleMain>
-    </NewsPage>
+      </NewsPage>
+    </>
   );
 };
 export default News;

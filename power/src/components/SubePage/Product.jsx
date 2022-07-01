@@ -3,9 +3,20 @@ import styled from "styled-components";
 import { BsHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+const ExplanationPage = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: black;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const ProductPage = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   background-color: black;
   border-bottom: 1px solid white;
@@ -20,10 +31,25 @@ const ProductHeader = styled.div`
   border: 1px solid white;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
-const ProductCal = styled.div``;
+const ProductCal = styled.div`
+  font-size: medium;
+  position: relative;
+  overflow: hidden;
+  animation: fadein 1.5s ease-in-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
 
 const ProductTitle = styled.p`
   width: 250px;
@@ -43,7 +69,7 @@ const ProductContant = styled.p`
 
 const ProductMain = styled.div`
   width: 100%;
-  height: calc(100vh - 171px);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,19 +152,29 @@ const OptionListItem = styled.li`
   }
 `;
 
+const ProductItem = [
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+  { id: "/Brands", key: "BRANDS" },
+];
+
 const Product = () => {
   return (
-    <ProductPage>
-      <ProductHeader>
-        <ProductCal>
-        <ProductTitle>Product</ProductTitle>
-        <ProductContant>파워에이드에 여러가지 종류와 가격을 알려줍니다.</ProductContant>
-        </ProductCal>
-      </ProductHeader>
-      <ProductMiddleMain>
+    <>
+      <ExplanationPage>
+        <ProductHeader>
+          <ProductCal className="fadein">
+            <ProductTitle>Product</ProductTitle>
+            <ProductContant>
+              파워에이드에 여러가지 종류와 가격을 알려줍니다.
+            </ProductContant>
+          </ProductCal>
+        </ProductHeader>
+        <ProductMiddleMain>
           <Link to="/">
             <ProductHome>
-              <BsHouseFill className="house"/>
+              <BsHouseFill className="house" />
             </ProductHome>
           </Link>
           <Select>
@@ -146,36 +182,32 @@ const Product = () => {
               <span>PRODUCT</span>
             </Option>
             <div class="optionList">
-              <Link to="/Product">
-                <OptionListItem>PRODUCT</OptionListItem>
-              </Link>
-              <Link to="/News">
-                <OptionListItem>NEWS</OptionListItem>
-              </Link>
-              <Link to="/Contact">
-                <OptionListItem>CONTACT</OptionListItem>
-              </Link>
-              <Link to="/Brands">
-                <OptionListItem>BRANDS</OptionListItem>
-              </Link>
+              {ProductItem.map((user) => (
+                <Link to={user.id}>
+                  <OptionListItem>{user.key}</OptionListItem>
+                </Link>
+              ))}
             </div>
           </Select>
         </ProductMiddleMain>
-      <ProductMain>
-        <ProductBox>  
-          <img src="./img/mountblue.png" className="mount" alt='마운트'/>
+      </ExplanationPage>
+      <ProductPage>
+        <ProductMain>
+        <ProductBox>
+          <img src="./img/mountblue.png" alt="마운트" />
         </ProductBox>
         <ProductBox>
-          <img src="./img/purplestorm.png" className="storm" alt='스톰'/>
+          <img src="./img/purplestorm.png" alt="스톰" />
         </ProductBox>
         <ProductBox>
-          <img src="./img/mightyforce.png" className="force" alt='포스'/>
+          <img src="./img/mightyforce.png" alt="포스" />
         </ProductBox>
         <ProductBox>
-          <img src="./img/goldrush.png" className="rush" alt='러쉬'/>
+          <img src="./img/goldrush.png" alt="러쉬" />
         </ProductBox>
       </ProductMain>
-    </ProductPage>
+      </ProductPage>
+    </>
   );
 };
 export default Product;
