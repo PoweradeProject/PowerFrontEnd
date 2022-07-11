@@ -2,9 +2,47 @@ import styled from "styled-components";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+const subePage = [
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+];
+
+const Header = () => {
+  return (
+    <Head>
+      <Headleft>
+        <Link to="/">
+          <img src="./img/poweraderogo.png" className="logo" alt="로고" />
+        </Link>
+      </Headleft>
+      <Headright>
+        {subePage.map((user) => (
+          <Link to={user.id}>
+            <SubeBox>
+              <p className="brand">{user.key}</p>
+            </SubeBox>
+          </Link>
+        ))}
+      </Headright>
+      <LoginBtn>
+        <Link to="/Login">
+          <FaUser className="user" />
+        </Link>
+        <Link to="/ShoppingBasket">
+          <FaShoppingCart className="market" />
+        </Link>
+        <FaSearch className="login" />
+      </LoginBtn>
+    </Head>
+  );
+};
+export default Header;
+
 const Head = styled.div`
   width: 100%;
-  height: 90px;
+  height: 80px;
   position: fixed;
   display: flex;
   z-index: 99;
@@ -70,41 +108,3 @@ const SubeBox = styled.div`
     box-sizing: border-box;
   }
 `;
-
-const subePage = [
-  { id: "/Brands", key: "BRANDS" },
-  { id: "/Product", key: "PRODUCT" },
-  { id: "/News", key: "NEWS" },
-  { id: "/Contact", key: "CONTACT" },
-];
-
-const Header = () => {
-  return (
-    <Head>
-      <Headleft>
-        <Link to="/">
-          <img src="./img/poweraderogo.png" className="logo" alt="로고" />
-        </Link>
-      </Headleft>
-      <Headright>
-        {subePage.map((user) => (
-          <Link to={user.id}>
-            <SubeBox>
-              <p className="brand">{user.key}</p>
-            </SubeBox>
-          </Link>
-        ))}
-      </Headright>
-      <LoginBtn>
-        <Link to="/Login">
-          <FaUser className="user" />
-        </Link>
-        <Link to="/ShoppingBasket">
-          <FaShoppingCart className="market" />
-        </Link>
-        <FaSearch className="login" />
-      </LoginBtn>
-    </Head>
-  );
-};
-export default Header;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from 'axios';  
+import axios from 'axios';
 
 const Login = () => {
   const [inputId, setInputId] = useState("");
@@ -20,7 +20,7 @@ const Login = () => {
             <InputId
               onChange={(e) => {
                 setInputId(e.target.value)
-              }}  
+              }}
               id="username"
               type="text"
               name="username"
@@ -42,7 +42,7 @@ const Login = () => {
           </InputPwBox>
         </InputForm>
         <LoginBtn id="Btn" onClick={onClickBtn}>로그인</LoginBtn>
-        <Link to="/SignUp">
+        <Link to="/SignUp_email">
           <Sign>회원가입</Sign>
         </Link>
       </LoginDiv>
