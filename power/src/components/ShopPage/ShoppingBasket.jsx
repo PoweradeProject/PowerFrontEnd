@@ -14,7 +14,7 @@ const HeaderShop = styled.div`
 const ShoppingBasketP = styled.div`
   background-color: black;
   width: 100%;
-  height: calc(100vh - 191px);
+  height: calc(100vh - 201px);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -65,7 +65,7 @@ const ShoppingBasket = () => {
       <ShoppingBasketP>
         <BasketBox>
           <PICK>
-            <img src="./img/mountblue.png" className="mount" />
+            <img src="./img/mountblue.png" className="mount" alt='마운트'/>
           </PICK>
           <Name>MOUNTAIN BLAST</Name>
           <Price>1700원</Price>

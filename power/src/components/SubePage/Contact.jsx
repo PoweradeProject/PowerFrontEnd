@@ -3,6 +3,48 @@ import styled from "styled-components";
 import { BsHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+const ContactItem = [
+  { id: "/Contact", key: "CONTACT" },
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+];
+
+const Contact = () => {
+  return (
+    <ContactPage>
+      <ContactHeader>
+        <ContactCal className="fadein">
+          <ContactTitle>Contact</ContactTitle>
+          <ContactContant>
+            궁금한 점이 있으면 파워에이드에게 연락주세요.
+          </ContactContant>
+        </ContactCal>
+      </ContactHeader>
+      <ContactMiddleMain>
+        <Link to="/">
+          <ContactHome>
+            <BsHouseFill className="house" />
+          </ContactHome>
+        </Link>
+        <Select>
+          <Option className="option">
+            <span>CONTACT</span>
+          </Option>
+          <div class="optionList">
+            {ContactItem.map((user) => (
+              <Link to={user.id}>
+                <OptionListItem>{user.key}</OptionListItem>
+              </Link>
+            ))}
+          </div>
+        </Select>
+      </ContactMiddleMain>
+    </ContactPage>
+  );
+};
+export default Contact;
+
 const ContactPage = styled.div`
   width: 100%;
   height: 100vh;
@@ -122,45 +164,3 @@ const OptionListItem = styled.li`
     background-color: rgb(0, 1, 3, 5);
   }
 `;
-
-const ContactItem = [
-  { id: "/Contact", key: "CONTACT" },
-  { id: "/Brands", key: "BRANDS" },
-  { id: "/Product", key: "PRODUCT" },
-  { id: "/News", key: "NEWS" },
-];
-
-const Contact = () => {
-  return (
-    <ContactPage>
-      <ContactHeader>
-        <ContactCal className="fadein">
-          <ContactTitle>Contact</ContactTitle>
-          <ContactContant>
-            궁금한 점이 있으면 파워에이드에게 연락주세요.
-          </ContactContant>
-        </ContactCal>
-      </ContactHeader>
-      <ContactMiddleMain>
-        <Link to="/">
-          <ContactHome>
-            <BsHouseFill className="house" />
-          </ContactHome>
-        </Link>
-        <Select>
-          <Option className="option">
-            <span>CONTACT</span>
-          </Option>
-          <div class="optionList">
-            {ContactItem.map((user) => (
-              <Link to={user.id}>
-                <OptionListItem>{user.key}</OptionListItem>
-              </Link>
-            ))}
-          </div>
-        </Select>
-      </ContactMiddleMain>
-    </ContactPage>
-  );
-};
-export default Contact;

@@ -3,6 +3,57 @@ import styled from "styled-components";
 import { BsHouseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+const BrandItem = [
+  { id: "/Brands", key: "BRANDS" },
+  { id: "/Product", key: "PRODUCT" },
+  { id: "/News", key: "NEWS" },
+  { id: "/Contact", key: "CONTACT" },
+];
+
+const Brand = ({header}) => {
+  return (
+    <>
+      <ExplanationPage>
+        <BrandHeader>
+          <BrandCal className="fadein">
+            <BrandTitle>Brands</BrandTitle>
+            <BrandContents>
+              무탄산 스포츠 음료로 1988년에 출시되었다.
+            </BrandContents>
+          </BrandCal>
+          <BrandImgBackGround className="fadein">
+            <img src="./img/Brand.png" className="Brand" alt="브랜드" />
+          </BrandImgBackGround>
+        </BrandHeader>
+        <BrandMiddleMain>
+          <Link to="/">
+            <BrandHome>
+              <BsHouseFill className="house" />
+            </BrandHome>
+          </Link>
+          <Select>
+            <Option className="option">
+              <span>BRANDS</span>
+            </Option>
+            <div class="optionList">
+              {BrandItem.map((user) => (
+                <Link to={user.id}>
+                  <OptionListItem>
+                    {user.key}
+                  </OptionListItem>
+                </Link>
+              ))}
+            </div>
+          </Select>
+        </BrandMiddleMain>
+      </ExplanationPage>
+      <BrandPage>
+      </BrandPage>
+    </>
+  );
+};
+export default Brand;
+
 const BrandPage = styled.div`
   width: 100%;
   height: 100vh;
@@ -160,54 +211,3 @@ const OptionListItem = styled.li`
     background-color: rgb(0, 1, 3, 5);
   }
 `;
-
-const BrandItem = [
-  { id: "/Brands", key: "BRANDS" },
-  { id: "/Product", key: "PRODUCT" },
-  { id: "/News", key: "NEWS" },
-  { id: "/Contact", key: "CONTACT" },
-];
-
-const Brand = () => {
-  return (
-    <>
-      <ExplanationPage>
-        <BrandHeader>
-          <BrandCal className="fadein">
-            <BrandTitle>Brands</BrandTitle>
-            <BrandContents>
-              무탄산 스포츠 음료로 1988년에 출시되었다.
-            </BrandContents>
-          </BrandCal>
-          <BrandImgBackGround className="fadein">
-            <img src="./img/Brand.png" className="Brand" alt="브랜드" />
-          </BrandImgBackGround>
-        </BrandHeader>
-        <BrandMiddleMain>
-          <Link to="/">
-            <BrandHome>
-              <BsHouseFill className="house" />
-            </BrandHome>
-          </Link>
-          <Select>
-            <Option className="option">
-              <span>BRANDS</span>
-            </Option>
-            <div class="optionList">
-              {BrandItem.map((user) => (
-                <Link to={user.id}>
-                  <OptionListItem>
-                    {user.key}
-                  </OptionListItem>
-                </Link>
-              ))}
-            </div>
-          </Select>
-        </BrandMiddleMain>
-      </ExplanationPage>
-      <BrandPage>
-      </BrandPage>
-    </>
-  );
-};
-export default Brand;
